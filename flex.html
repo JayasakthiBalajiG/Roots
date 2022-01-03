@@ -327,6 +327,9 @@
         var spaceA= spaceB * centi;
 
         console.log(space);
+        console.log(spaceA);
+        console.log(row);
+        console.log(col);
 
         }
         else if(unit== 'M'){
@@ -344,11 +347,11 @@
         let spaceY = spaceA+"px";
         let spaceZ = spaceA+"px";
         console.log(spaceX);
-        document.getElementById("layout").style.gap=spaceX;
-        document.getElementById("layout").style.paddingLeft=spaceY;
-        document.getElementById("layout").style.paddingTop=spaceZ;
+    
 
       function Calculate() {
+        document.getElementById("layout").style.gap=spaceX;
+        document.getElementById("layout").style.padding=spaceY;
         document.getElementById('layout').style.height = col;
         document.getElementById('layout').style.width = row;
         document.getElementById('area').style.height = len;
@@ -412,24 +415,28 @@
         var reqArea = pArea*(parseInt(quant));
         console.log("ReqArea:"+reqArea);*/
         if (unit == "feet"){
-        var newQuan = (Math.trunc((Row * feet) / (widthp+space+spaceA))) * Math.trunc(((columnv * feet) / (heightp+space+spaceA)));
-        console.log((widthp+space+spaceA));
-        console.log(newQuan);
-        }
+        var newQuan = (Math.trunc((Row * feet)-(spaceA) / (widthp+space))) * Math.trunc(((columnv * feet)-(spaceA) / (heightp+space)));
+       
+
+      }
         if(unit == "M"){
-        var newQuan = (Math.trunc((Row * meter) / (widthp+space+spaceA))) * Math.trunc(((columnv * meter) / (heightp+space+spaceA)));
+        var newQuan = (Math.trunc((Row * meter)-(spaceA) / (widthp+space))) * Math.trunc(((columnv * meter)-(spaceA) / (heightp+space)));
 
         }
         if(unit == "Cm"){
-          var newQuan = (Math.trunc((Row * centi) / (widthp+space+spaceA))) * Math.trunc(((columnv * centi) / (heightp+space+spaceA)));
+          var newQuan = (Math.trunc((Row * centi)-(spaceA) / (widthp+space))) * Math.trunc(((columnv * centi)-(spaceA) / (heightp+space)));
+          console.log((Row * centi)-(spaceA));
++          console.log((widthp+space));
+          console.log((columnv * centi)-(spaceA));
+          console.log((heightp+space));
+          console.log(newQuan);
 
         }
         if(unit=="Mm"){
-          var newQuan = (Math.trunc((Row * mil) / (widthp+space+spaceA))) * Math.trunc(((columnv * mil) / (heightp+space+spaceA)));
+          var newQuan = (Math.trunc((Row * mil)-(spaceA) / (widthp+space))) * Math.trunc(((columnv * mil)-(spaceA) / (heightp+space)));
 
         }
-        console.log(newQuan);
-        localStorage.setItem('Quant1',Math.round(newQuan));
+        
        
         if(parseInt(quant) <= newQuan){
               buildLayout()
